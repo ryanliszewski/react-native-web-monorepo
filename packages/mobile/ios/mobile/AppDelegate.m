@@ -31,6 +31,9 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
+  NSDate *bundleStart = [NSDate date];
+  
+  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"mobile"
@@ -47,6 +50,12 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  NSDate *bundleFinished = [NSDate date];
+  NSTimeInterval bundleTime = [bundleFinished timeIntervalSinceDate:bundleStart];
+  NSLog(@"Bundle time = %f", bundleTime);
+  
+  
   return YES;
 }
 
